@@ -3,6 +3,11 @@
 Todas as mudanças relevantes deste pacote, no formato [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
 com versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.1.1] — 2026-08-21
+
+### Corrigido
+- Os comandos `/dart-load`, `/dart-review` e `/dart-cc` carregavam **texto do template de Swift** (force-unwrap, `@MainActor`, `Sendable`, "simulador fixado") — resíduo de terem nascido de uma cópia adaptada por substituição. Reescritos para o que é de Dart/Flutter: `Future` sem `await`, stream sem `cancel()`, `mounted` depois de `await`, `Key` em lista dinâmica, `pubspec.lock`, e os lints do piso **explícitos** no `analysis_options.yaml`. *É a mesma Classe C que este catálogo passou o dia removendo — e ela reapareceu na skill nova, no primeiro dia.*
+
 ## [0.1.0] — 2026-08-21
 
 Primeira versão. A `schematize-mobile` promete escolha *"nativo vs cross por fit + ADR"* e **não havia skill por trás de nenhuma das opções** (vistoria de 2026-08-21). Esta é a peça **cross**, publicada no mesmo marco que `schematize-swift`, `schematize-kotlin` e o conserto da `schematize-mobile` (v0.3.0).
