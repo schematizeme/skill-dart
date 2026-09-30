@@ -16,8 +16,6 @@
 9. **Segredo nunca no bundle** (nem via `--dart-define`); **`shared_preferences` não é cofre**.
 10. **`pubspec.lock` commitado** (aplicação), SDK fixado, e os **lints do piso explícitos** no
     `analysis_options.yaml` — herdar `flutter_lints` não basta.
-11. **Orquestrador não desenvolve; subagent barato executa.** O agent principal só planeja, despacha e
-    revisa; ação onerosa vira micro-tasks para subagents em `sonnet` (falhou → o mesmo subagent corrige →
-    re-decompõe → só então `opus`, com motivo). **Sem frota ociosa:** idle com pendência volta ao trabalho; dependente de outro agent → mata e enfileira com gatilho; terminou → mata. Detalhe: `schematize-engineering` → `references/orquestracao.md` §9.
+11. <!-- herdado:engineering/orquestracao:curto -->**Orquestrador não desenvolve; subagent barato executa.** O agent principal só planeja, despacha e revisa; ação onerosa vira micro-tasks para subagents em `sonnet` (falhou → o mesmo subagent corrige, até 2 rodadas → re-decompõe → só então `opus`, com motivo). No overdev, cada item do checklist vai a um subagent e o principal revisa antes do `- [x]`. **Sem frota ociosa:** idle com pendência volta ao trabalho; dependente de outro agent → mata e enfileira com gatilho; terminou → mata (§9.6). Detalhe: `schematize-engineering` → `references/orquestracao.md` §9.<!-- /herdado -->
 
 Gate: `bash .claude/skills/schematize-dart/scripts/check-dart.sh .`
