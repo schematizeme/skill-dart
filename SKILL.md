@@ -66,7 +66,7 @@ Mapa de references:
 9. **`pubspec.lock` commitado em aplicação**; SDK e versão do Flutter **fixados** no CI.
 10. **Os lints do piso ficam explícitos** no `analysis_options.yaml` — herdar `flutter_lints` **não
     basta**, e é o `flutter analyze` que trava o merge.
-11. **Orquestrador não desenvolve; subagent barato executa.** O agent principal só planeja, despacha e revisa; ação onerosa vira micro-tasks para subagents em `sonnet` (falhou → o mesmo subagent corrige → re-decompõe → só então `opus`, com motivo). Detalhe: `schematize-engineering` → `references/orquestracao.md` §9.
+11. **Orquestrador não desenvolve; subagent barato executa.** O agent principal só planeja, despacha e revisa; ação onerosa vira micro-tasks para subagents em `sonnet` (falhou → o mesmo subagent corrige → re-decompõe → só então `opus`, com motivo). **Sem frota ociosa:** idle com pendência volta ao trabalho; dependente de outro agent → mata e enfileira com gatilho; terminou → mata. Detalhe: `schematize-engineering` → `references/orquestracao.md` §9.
 
 ## Relação com as outras skills
 
