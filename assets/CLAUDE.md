@@ -16,5 +16,8 @@
 9. **Segredo nunca no bundle** (nem via `--dart-define`); **`shared_preferences` não é cofre**.
 10. **`pubspec.lock` commitado** (aplicação), SDK fixado, e os **lints do piso explícitos** no
     `analysis_options.yaml` — herdar `flutter_lints` não basta.
+11. **Orquestrador não desenvolve; subagent barato executa.** O agent principal só planeja, despacha e
+    revisa; ação onerosa vira micro-tasks para subagents em `sonnet` (falhou → o mesmo subagent corrige →
+    re-decompõe → só então `opus`, com motivo). Detalhe: `schematize-engineering` → `references/orquestracao.md` §9.
 
 Gate: `bash .claude/skills/schematize-dart/scripts/check-dart.sh .`

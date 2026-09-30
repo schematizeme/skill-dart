@@ -19,7 +19,7 @@ bash /tmp/skill-dart/install.sh .
 
 ## O que tem dentro
 
-- **SKILL.md** — o contrato: 10 pisos inegociáveis + mapa de references.
+- **SKILL.md** — o contrato: 11 pisos inegociáveis + mapa de references.
 - **references/** — `piso` (null safety, assíncrono, Flutter, erro, segurança, teste),
   `plataforma` (lock, SDK, dependência, alvos, release), `stack-versoes` (anexo volátil datado, com
   **os lints que o piso exige ligados**).
