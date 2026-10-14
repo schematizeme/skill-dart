@@ -3,8 +3,7 @@ name: schematize-dart
 metadata:
   version: 0.3.1
 description: >-
-  Piso de Dart/Flutter para clientes mobile, sob a schematize-mobile. Use ao tocar pubspec.yaml ou *.dart: null safety
-  sem '!', await em Futures, context.mounted, dispose de streams, segredo fora do bundle. IAM/lojas: mobile. Traz CI.
+  Piso de Dart/Flutter para clientes mobile. Use ao tocar pubspec.yaml ou *.dart: null safety sem '!', await em Futures, context.mounted, segredo fora do bundle. IAM/lojas: mobile.
 ---
 <!-- cross-skill: linguagens.md -> schematize-engineering -->
 
