@@ -1,0 +1,20 @@
+# CI de Dart/Flutter (schematize-dart). Copie para .github/workflows/ci.yml.
+# Config de analise: assets/lint/analysis_options.yaml (raiz do pacote).
+name: ci
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  flutter:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
+        with:
+          channel: stable
+          flutter-version-file: pubspec.yaml  # versao fixada no repo, nunca "latest"
+          cache: true
+      - run: flutter pub get
+      - run: dart format --set-exit-if-changed .
+      - run: flutter analyze --fatal-infos
+      - run: flutter test
