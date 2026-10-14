@@ -2,7 +2,8 @@
 name: schematize-dart
 metadata:
   version: 0.2.2
-description: O piso de DART/FLUTTER da casa. Rege null safety que não se devolve (**`!` desliga a verificação pela qual você pagou a migração**; `late` não é conserto de nulo incômodo; `dynamic` vira `NoSuchMethodError` em produção); assíncrono (**`Future` sem `await` é ordem de execução que ninguém escreveu**; stream sem `cancel()` é vazamento que ainda dispara `setState` depois da tela morrer; CPU pesado sai da UI thread ou vira jank); Flutter (**`BuildContext` depois de `await` sem `mounted`** é a armadilha nº 1; `const` onde der; `Key` em lista dinâmica); erro com stack trace, nunca `catch (e) {}`; segredo fora do bundle e `shared_preferences` não é cofre; `pubspec.lock` commitado em aplicação e os lints do piso **explícitos** — herdar `flutter_lints` não basta. Traz gate executável.
+description: >-
+  Piso de Dart/Flutter da casa para clientes mobile, sob a schematize-mobile. Use ao tocar pubspec.yaml, *.dart ou analysis_options.yaml: null safety sem '!', Futures com await, context.mounted, dispose de streams, segredo fora do bundle, SDK fixado. IAM, ops e entrega nas lojas ficam com a schematize-mobile. Traz template de CI.
 ---
 <!-- cross-skill: linguagens.md -> schematize-engineering -->
 
@@ -12,6 +13,36 @@ Recorte de **linguagem e framework**. A base agnóstica é a **`schematize-engin
 **app** é da **`schematize-mobile`** — e, no que é de app, **ela manda**.
 
 **Versão:** skill `schematize-dart` v0.2.2. Changelog em `CHANGELOG.md`.
+
+## Precedência e herança (leia antes de divergir)
+
+Esta skill é o recorte **Dart** das linguagens **sancionadas fora do rol de backend** (`schematize-engineering` → `references/linguagens.md` §2.2): cliente **Flutter**, **sob a `schematize-mobile`**.
+
+1. **Onde esta skill divergir da base, a BASE MANDA.** Aqui mora a especialização — a lib, o gate, a
+   sintaxe da linguagem. Divergência de *piso* é defeito desta skill, não variante local.
+2. **O que não está repetido aqui é HERDADO, não dispensado.** Valem integralmente, sem cópia local:
+   - **§28 Archive** — `<projeto>/<projeto>_archive/` é **repositório git próprio, PRIVADO e
+     obrigatório**, criticidade 0 (`schematize-archive`).
+   - **§35 Definition of Done** e a lista de anti-padrões (citada por **título**, nunca por número).
+   - **§39 Índice/MAPA** — enumeração exaustiva (uma entrada por unidade chamável, `M == N`) e grafo
+     com arestas em ASCII (`A -> B`), nunca a seta unicode.
+   - **IAM** (`schematize-engineering` → `references/iam.md`): identidade ≠ email, ≥2 fatores, ReBAC
+     multi-tenant, argon2id-only para senha nova, sessão longa e logout irreversível.
+   - **Efeito externo** nunca sai de não-produção (`schematize-engineering` →
+     `references/efeitos-externos.md`).
+   - **Orquestração** (`schematize-engineering` → `references/orquestracao.md` §9): o principal não
+     desenvolve; subagents `sonnet` por padrão, `opus` só após falha.
+3. **Delegado à `schematize-mobile`, por nome:** IAM mobile (public client OIDC/PKCE, passkeys,
+   Keychain/Keystore), ops, offline/sync, push, testes no device e entrega nas lojas
+   (`schematize-mobile` → `references/testes-mobile.md`, `schematize-mobile` →
+   `references/entrega-lojas.md`; comandos `/mobile-auth`, `/mobile-offline`, `/mobile-test`,
+   `/mobile-release`). **Dependência:** instale a `schematize-mobile` junto; sem ela esses
+   arquivos não existem no seu ambiente e o piso de app fica sem dono.
+4. **QA, ops, IAM e índice não têm comando próprio aqui:** vêm da base `/eng-*`. Para trabalho
+   contínuo use `/eng-overdev`; para planejar `/eng-plan`; para varrer a base `/eng-scan`; para
+   revisão geral `/eng-review` (e `/eng-ops`, `/eng-iam`, `/eng-index`). Os comandos
+   `/dart-*` cobrem só o piso da linguagem.
+
 
 ## Por que ela nasceu
 
@@ -46,6 +77,8 @@ Mapa de references:
 | Null safety, assíncrono (`await`, stream, isolate), Flutter (`mounted`, `const`, `Key`, `dispose`), erro com stack trace, segurança do cliente, teste | `references/piso.md` |
 | `pubspec.lock`, SDK fixado, `flutter analyze` como gate, dependência como superfície (plugin nativo dobra a superfície), alvos com ADR, release (ofuscação, tamanho) | `references/plataforma.md` |
 | Versões, ferramental e **os lints que o piso exige ligados**, com data **e a ressalva de que a toolchain não roda na máquina de referência** | `references/stack-versoes.md` |
+
+Assets prontos para copiar: `assets/ci/github-actions-ci.yml` (dart format, flutter analyze, flutter test) · `assets/lint/analysis_options.yaml`.
 
 ## Pisos inegociáveis (vetam o atalho)
 

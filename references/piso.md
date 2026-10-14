@@ -36,7 +36,7 @@ Convenção: **MUST** = o gate cobra · **VETADO** = piso.
 ## 3. Flutter — o que é da linguagem e some no review
 
 - **`BuildContext` depois de `await` é a armadilha nº 1:** o widget pode ter sido desmontado.
-  **`if (!mounted) return;`** antes de usar o contexto — e o lint `use_build_context_synchronously`
+  **`if (!mounted) return;`** (em `State`) ou **`if (!context.mounted) return;`** (em qualquer lugar, inclusive função e `StatelessWidget`) antes de usar o contexto — e o lint `use_build_context_synchronously`
   ligado.
 - **`setState` depois do `dispose`** joga exceção: cancele stream/timer antes.
 - **`const` onde der:** widget `const` não é reconstruído — é a otimização mais barata que existe, e
